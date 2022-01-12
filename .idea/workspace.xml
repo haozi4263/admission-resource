@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5e7f4fc7-1704-4ba4-9b11-eee8efe23375" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/config/default.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/configmap/configmap.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/configmap/flatten.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/configmap/merge.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/configmap/store.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/configmap/watcher.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/infra/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/test/flattendconfigvalues" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cm-restart/test/strings_TrimSuffix.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/db/backup.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/db/check.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/db/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/db/const.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/db/import.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/test/GetCm_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/test/GetRedisMaster_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/test1/glabal-config-all.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/test1/mong.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/test1/test1.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/test1/test2.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dbops/test1/test3.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/dem1/doc.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cobra/test1.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-registry/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-registry/deploy/deploy.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-registry/deploy/registry.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-registry/deploy/test/allowed.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-registry/deploy/test/denyed.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-registry/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-registry/pkg/webhook.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-registry/readme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/cert/ca-config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/cert/ca-csr.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/cert/server-csr.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/cert/server.csr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/deploy.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/registry.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/test/admission-resource-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/pkg/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/pkg/webhook.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admission-resource/readme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../etcd-operator/cmd/backup/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/action.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/resource.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../etcd-operator/pkg/file/s3.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../etcd-operator/readme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../opdemo/controllers/myapp_controllerv1.go.bak" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../opdemo/controllers/resource.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../opdemo/readme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/defer延时调用/01_defer基本使用.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/defer延时调用/02_defer和匿名函数使用.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/空接口作为函数参数传入任意参数.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/空接口存储map值.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen18-类型断言/interfack_refilect/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen18-类型断言/refilect_create_struct/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/chan_select/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/chan_select/监控狗程序.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/chann_无缓冲区/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/channel-goroutine/waitergroup-chan.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/channel/定义.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/goroute_实时计算例子/mian.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/goroutine/go-process.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/goroutine_计算平方/02-计算平方.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/goroutine池/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/ticket/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/waitegroup/goutine.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/shimo/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/struct/01_结构体.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/struct/06_mapstruct结构体.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/struct/07_since_struct.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/匿名函数/01_普通匿名函数.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/匿名函数/02_代参匿名函数.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/匿名函数/03_有返回值匿名函数.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/匿名函数/04_返回值是匿名函数的匿名函数.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/异常处理recover/01_异常recover使用.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/异常处理recover/02_完整使用方法.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/指针变量/01_指针变量定义.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/指针变量/02_new指针变量.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/指针变量/03_指针变量作为函数参数.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/指针变量/04_数组使用指针对函数传参.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/指针变量/05_结构体指针引用传递.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/指针变量/06_函数结构体饮用传递.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/方法/01_方法的定义使用.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/方法/02_方法引用传递.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../github.com/k8s/demo1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/json/json.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/json/01_结构体转json.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/employee/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/employee/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/employee/mainbak.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/employee/mainbak.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/empty_interface/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/empty_interface/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/homework/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/homework/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/interface_test/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/interface_test/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/type_assert/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/type_assert/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen18/refilect_base/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen18-类型断言/refilect_base/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen18/refilect_set_struct/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen18-类型断言/refilect_set_struct/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen18/refilect_struct/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen18-类型断言/refilect_struct/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen18/refilect_struct_method/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen18-类型断言/refilect_struct_method/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen18/refilect_tag/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen18-类型断言/refilect_tag/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/channel/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/channel/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/channel_caption/buf_channel.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/channel_caption/buf_channel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/channel_caption/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/channel_caption/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/channel_len/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/channel_len/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/for_range_chan/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/for_range_chan/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/goroutine/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/goroutine/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/goroutine_sync/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/goroutine_sync/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/nobuf_chan/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/nobuf_chan/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/produce/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/produce/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/runtime/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/runtime/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/single_chan/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/single_chan/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/waitegroup/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/waitegroup/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/waitgroup1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/waitgroup1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/lister20/workpool/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/lister20-goroutine/workpool/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/logger-file-consle实现/file_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/logger-file-consle实现/file_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/logger/file_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/logger/file_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/os/exec.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/os/exec.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/struct/02_值语义和引用语义.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/struct/02_值语义和引用语义.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/02-面向过程和面向对象区别-方法(封装)/02-面向对象和对象函数的区别-方法（封装）.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../cm-restart/test/strings_hassuffix.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/01-成员操作-继承.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/01-成员操作-继承.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/01-结构体指针类型匿名字段-继承.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/01-结构体指针类型匿名字段-继承.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/02-为结构体类型添加方法-封装.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../cm-restart/test/test1.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/02-值语义和引用语义.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../cm-restart/test/test3.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/02-指针变量的方法集-方法(封装).go" beforeDir="false" afterPath="$PROJECT_DIR$/../../cm-restart/test/test4.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/02-方法的继承-方法(封装).go" beforeDir="false" afterPath="$PROJECT_DIR$/../../cm-restart/test/ticket.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/02-普通变量的方法集-方法(封装).go" beforeDir="false" afterPath="$PROJECT_DIR$/../../cobra/dbops/test1/cmd_row.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/03-接口的定义和实现-接口(多态).go" beforeDir="false" afterPath="$PROJECT_DIR$/../../cobra/dbops/test1/exec.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gostudy/面向对象编程（继承 封装 多态）/03-空接口-接口(多态).go" beforeDir="false" afterPath="$PROJECT_DIR$/../../cobra/dbops/test1/getpodname.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/Cellar/go/1.14.3/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../admission-resource/deploy/deploy.yaml" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="kubernetes-admin@cluster.local" />
+    <option name="namespace" value="default" />
+  </component>
+  <component name="ProjectId" id="23YOTWXG9uqrShO8LpMVgsqp75m" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build github.com/haozi4263/admission-resource-operation/test">
+    <configuration name="go build github.com/haozi4263/admission-resource-operation/test" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="admission-resource-operation" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/test/main.go" />
+      <package value="github.com/haozi4263/admission-resource-operation/test" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="admission-resource-operation" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/test/main.go" />
+      <package value="github.com/haozi4263/admission-resource-operation" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build github.com/haozi4263/admission-resource-operation/test" />
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+</project>

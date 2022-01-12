@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admission-resource
+  labels:
+    app: admission-resource
+spec:
+  selector:
+    matchLabels:
+      app: admission-resource
+  template:
+    metadata:
+      labels:
+        app: admission-resource
+    spec:
+      containers:
+        - name: admission-resource
+          image: haozi4263/admission-resource:v0.9
+          imagePullPolicy: IfNotPresent
+          env:
+            # limit_cpu/request_cpu <= 4 limit_mem/request_mem <= 4
+            - name: RESOURCE_MULTIPLE
+              value: "4:4"
+          ports:
+            - containerPort: 443
+          volumeMounts:
+            - name: webhook-certs
+              mountPath: /etc/webhook/cert
+              readOnly: true
+      volumes:
+        - name: webhook-certs
+          secret:
+            secretName: admission-resource-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admission-resource
+  labels:
+    app: admission-resource
+spec:
+  ports:
+    - port: 443
+      targetPort: 443
+  selector:
+    app: admission-resource
