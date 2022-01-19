@@ -52,3 +52,47 @@ spec:
       targetPort: 443
   selector:
     app: admission-resource
+
+---
+apiVersion: v1
+data:
+  mutate.yaml: |
+    mutate:
+      labels: true
+      annotations: true
+      namespace:
+        - 'default'
+    labels:
+      jude.io/clustercode: CHN-GZLY
+      jude.io/groupname: "deploymentName"
+      jude.io/zonecode: CHN-GZLY
+      jude.io/appid: shimo
+
+    annotations:
+      jude.io/register-pod.temporaryDeletion: false
+      jude.io/register-plugin.cmdb: true
+      jude.io/register-plugin.registry: true
+      jude.io/register-plugin-extra.cmdb: {"appName":"shimo","clusterName":"shimo","cpu":"limit.cpu","disk_model_name":"sata","disk_size":"50Gi","env":"product","mem":"limit.mem","serverType":"default","tags":{"groupName":"deploymentName"},"treeAppId":55086,"userID":"80295976","userName":"zhangfuyuan","zone":"CHN-GZLY"}
+      jude.io/register-plugin-extra.registry: {"appName":"shimo","isRDSAuth":1,"port":10114,"protocols":"","source":"cloud","tag":"","uptime":1576033750889,"weight":100,"zoneCode":"CHN-GZLY"}
+
+    initContainers:
+      enable: false
+      initContainers: |
+        initContainers:
+        - command:
+          - python
+          - -u
+          - /app/main.py
+          - ALL
+          envFrom:
+          - configMapRef:
+              name: global-configuration
+          image: registryo.shimo.im/shimo-ee/init_container
+          imagePullPolicy: Always
+        name: healthcheck-service
+
+kind: ConfigMap
+metadata:
+  name: admission-resource
+  namespace: default
+
