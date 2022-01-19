@@ -1,0 +1,16 @@
+ClusterName: kubernetes
+Namespace: shimo
+
+
+labels:
+  baymax.io/clustercode: "CHN-GZLY"
+  baymax.io/groupname: "deployment"
+  baymax.io/zonecode: "CHN-GZLY"
+  baymax.io/appid: "shimo"
+
+annotations:
+  baymax.io/register-pod.temporaryDeletion: false
+  baymax.io/register-plugin.cmdb: true
+  baymax.io/register-plugin.registry: true
+  baymax.io/register-plugin-extra.cmdb: {"appName":"shimo","clusterName":"shimo","cpu":"limit.cpu","disk_model_name":"sata","disk_size":"50Gi","env":"product","mem":"limit.mem","serverType":"default","tags":{"groupName":"deploymentName"},"treeAppId":55086,"userID":"80295976","userName":"zhangfuyuan","zone":"CHN-GZLY"}
+  baymax.io/register-plugin-extra.registry: {"appName":"shimo","isRDSAuth":1,"port":10114,"protocols":"","source":"cloud","tag":"","uptime":1576033750889,"weight":100,"zoneCode":"CHN-GZLY"}

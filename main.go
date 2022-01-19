@@ -21,6 +21,7 @@ func main()  {
 	flag.IntVar(&param.Port, "port",443, "Webhook Server Port.")
 	flag.StringVar(&param.CertFile, "tlsCertFile", "/etc/webhook/cert/tls.crt","x509 certification file")
 	flag.StringVar(&param.KeyFile, "keyFile", "/etc/webhook/cert/tls.key","x509 private key file")
+	flag.StringVar(&param.ConfigFile, "ConfigFile", "/etc/webhook/conf/mutate.yaml","mutate configFile")
 	flag.Parse()
 
 	cert, err :=tls.LoadX509KeyPair(param.CertFile, param.KeyFile)

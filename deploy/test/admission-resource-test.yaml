@@ -3,8 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: admission-resource-test1
-  annotations:
-    im.shimo.admission-registry/mutate: "no"
+  labels:
+    app: admission-resource-test1
 spec:
   selector:
     matchLabels:
@@ -17,7 +17,7 @@ spec:
       containers:
         - name: mutate
           image: docker.io/nginx
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           resources:
@@ -25,5 +25,5 @@ spec:
               cpu: "2"
               memory: 2Gi
             requests:
-              cpu: "1m"
+              cpu: "1"
               memory: 512Mi

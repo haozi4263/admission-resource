@@ -20,17 +20,26 @@ var (
 	runtimeScheme = runtime.NewScheme()
 	codeFactory   = serializer.NewCodecFactory(runtimeScheme)
 	deserializer  = codeFactory.UniversalDeserializer()
+	deployment appsv1.Deployment
+	statefulset appsv1.StatefulSet
 )
 
 type WhSvrParam struct {
-	Port     int
-	CertFile string
-	KeyFile  string
+	Port       int
+	CertFile   string
+	KeyFile    string
+	ConfigFile string
 }
 
 type WebhookServer struct {
-	Server              *http.Server // http server
+	Server            *http.Server // http server
 	RESOURCE_MULTIPLE []string     // cpu:memory 4:3 limit/request资源比例
+}
+
+type PatchOperation struct {
+	Op    string      `json:"op"`
+	Path  string      `json:"path"`
+	Value interface{} `json:"value,omitempty"`
 }
 
 func (s *WebhookServer) Handler(writer http.ResponseWriter, request *http.Request) {
@@ -68,7 +77,7 @@ func (s *WebhookServer) Handler(writer http.ResponseWriter, request *http.Reques
 	} else {
 		// 序列化成功，也就是说获取到了请求的 AdmissionReview 的数据
 		if request.URL.Path == "/mutate" {
-			//admissionResponse = s.mutate(&requestedAdmissionReview)
+			admissionResponse = s.mutate(&requestedAdmissionReview)
 		} else if request.URL.Path == "/validate" {
 			admissionResponse = s.validate(&requestedAdmissionReview)
 		}
@@ -161,8 +170,8 @@ func (s *WebhookServer) validate(ar *admissionv1.AdmissionReview) *admissionv1.A
 	limitCpu := ResourceConvert(resource.Limits.Cpu().String())
 	limitMem := ResourceConvert(resource.Limits.Memory().String())
 
-	cpuMultiple,_ := strconv.Atoi(s.RESOURCE_MULTIPLE[0])
-	MemMultiple,_ := strconv.Atoi(s.RESOURCE_MULTIPLE[1])
+	cpuMultiple, _ := strconv.Atoi(s.RESOURCE_MULTIPLE[0])
+	MemMultiple, _ := strconv.Atoi(s.RESOURCE_MULTIPLE[1])
 
 	if limitCpu/requestCpu > cpuMultiple || limitMem/requestMem > MemMultiple {
 		klog.Info("limit/request资源比例大于4倍不符合资源限制要求!")
@@ -183,4 +192,121 @@ func (s *WebhookServer) validate(ar *admissionv1.AdmissionReview) *admissionv1.A
 			Message: fmt.Sprintf("resoucres limit/request结果小于等于4符合资源限制要求"),
 		},
 	}
+}
+
+func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.AdmissionResponse {
+	// Deployment、StatefulSet -->Add Annotations Labels Init Containers
+	req := ar.Request
+	var (
+		objectMeta *metav1.ObjectMeta
+		limitCpu   string
+		limitMem   string
+		appName    string
+	)
+
+	klog.Infof("AdmissionReview for Kind=%s Namespace=%s Name=%s UID=%s",
+		req.Kind.Kind, req.Namespace, req.Name, req.UID)
+
+	switch req.Kind.Kind {
+	case "Deployment":
+		if err := json.Unmarshal(req.Object.Raw, &deployment); err != nil {
+			klog.Error("Can't not unmarshal raw object: %v", err)
+			return &admissionv1.AdmissionResponse{
+				Result: &metav1.Status{
+					Code:    http.StatusBadRequest,
+					Message: err.Error(),
+				},
+			}
+		}
+		for _, dep := range deployment.Spec.Template.Spec.Containers {
+			limitCpu = dep.Resources.Limits.Cpu().String()
+			limitMem = dep.Resources.Limits.Memory().String()
+		}
+		appName = deployment.Name
+		objectMeta = &deployment.ObjectMeta
+	case "Statefulset":
+		if err := json.Unmarshal(req.Object.Raw, &statefulset); err != nil {
+			klog.Error("Can't not unmarshal raw object: %v", err)
+			return &admissionv1.AdmissionResponse{
+				Result: &metav1.Status{
+					Code:    http.StatusBadRequest,
+					Message: err.Error(),
+				},
+			}
+		}
+		for _, sts := range statefulset.Spec.Template.Spec.Containers {
+			limitCpu = sts.Resources.Limits.Cpu().String()
+			limitMem = sts.Resources.Limits.Memory().String()
+		}
+		appName = statefulset.Name
+		objectMeta = &statefulset.ObjectMeta
+	default:
+		return &admissionv1.AdmissionResponse{
+			Result: &metav1.Status{
+				Code:    http.StatusBadRequest,
+				Message: fmt.Sprintf("Can't handle the kind(%s) object", req.Kind.Kind),
+			},
+		}
+	}
+
+	labels, annotations := GetLabels(appName, limitCpu, limitMem)
+	var patch []PatchOperation
+	patch = append(patch, mutateLabels(&deployment, objectMeta.GetLabels(), labels)...)
+	patch = append(patch, mutateAnnotations(&deployment, objectMeta.GetAnnotations(), annotations)...)
+	patchBytes, err := json.Marshal(patch)
+	klog.Infof("patchBytes: %s", string(patchBytes))
+	if err != nil {
+		klog.Errorf("patch marshal error: %v", err)
+		return &admissionv1.AdmissionResponse{
+			Result: &metav1.Status{
+				Code:    http.StatusBadRequest,
+				Message: err.Error(),
+			},
+		}
+	}
+  	// AdmissionResponse 返回给 APIServer
+	return &admissionv1.AdmissionResponse{
+		Allowed: true,
+		Patch:   patchBytes,
+		PatchType: func() *admissionv1.PatchType {
+			pt := admissionv1.PatchTypeJSONPatch
+			return &pt
+		}(),
+	}
+}
+
+func mutateLabels(dep *appsv1.Deployment, target map[string]string, added map[string]string) (patch []PatchOperation) {
+	for key, value := range added {
+		if dep.Labels == nil {
+			dep.Labels["app"] = dep.Name
+		}
+		dep.Labels[key] = value
+	}
+	patch = append(patch, PatchOperation{
+		Op: "add",
+		Path: "/metadata/labels",
+		Value: dep.Labels,
+	})
+
+	patch = append(patch, PatchOperation{
+		Op: "add",
+		Path: "/spec/template/metadata/labels",
+		Value: dep.Labels,
+	})
+	return patch
+}
+
+func mutateAnnotations(dep *appsv1.Deployment, target map[string]string, added map[string]string) (patch []PatchOperation) {
+	for key, value := range added {
+		if dep.Annotations == nil {
+			dep.Annotations = map[string]string{}
+		}
+		dep.Annotations[key] = value
+		patch = append(patch, PatchOperation{
+			Op:   "add",
+			Path: "/metadata/annotations",
+			Value: dep.Annotations,
+		})
+	}
+	return
 }

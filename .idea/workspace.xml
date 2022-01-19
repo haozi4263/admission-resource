@@ -36,20 +36,11 @@
       <change afterPath="$PROJECT_DIR$/../admission-registry/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../admission-registry/pkg/webhook.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../admission-registry/readme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/cert/ca-config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/cert/ca-csr.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/cert/server-csr.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/cert/server.csr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/deploy.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/registry.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/deploy/test/admission-resource-test.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/pkg/utils.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/pkg/webhook.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../admission-resource/readme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy/admission-configmap.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/resouce.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/mutate.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/tmpl.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/viper.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/cmd/backup/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/action.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/resource.go" afterDir="false" />
@@ -94,6 +85,16 @@
       <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/方法/01_方法的定义使用.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/方法/02_方法引用传递.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../github.com/k8s/demo1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/deploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/registry.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/registry.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/test/admission-resource-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/test/admission-resource-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/webhook.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme" beforeDir="false" afterPath="$PROJECT_DIR$/readme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/json/json.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/json/01_结构体转json.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/employee/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/employee/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/employee/mainbak.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/employee/mainbak.go" afterDir="false" />
@@ -149,13 +150,13 @@
   </component>
   <component name="GOROOT" url="file:///usr/local/Cellar/go/1.14.3/libexec" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../admission-resource/deploy/deploy.yaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/deploy/deploy.yaml" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="kubernetes-admin@cluster.local" />
@@ -174,15 +175,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/deploy/test" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/deploy/test" />
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+    </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build github.com/haozi4263/admission-resource-operation/test">
+  <component name="RunManager" selected="Go Build.go build viper.go">
     <configuration name="go build github.com/haozi4263/admission-resource-operation/test" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="admission-resource-operation" />
       <working_directory value="$PROJECT_DIR$" />
@@ -192,19 +197,49 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build github.com/haozi4263/admission-resource" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="admission-resource-operation" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="github.com/haozi4263/admission-resource" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/haozi4263/admission-resource/test" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="admission-resource-operation" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/test/main.go" />
-      <package value="github.com/haozi4263/admission-resource-operation" />
+      <filePath value="$PROJECT_DIR$/test/tmpl.go" />
+      <package value="github.com/haozi4263/admission-resource/test" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build tmpl.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="admission-resource-operation" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/test/tmpl.go" />
+      <package value="github.com/haozi4263/admission-resource" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build viper.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="admission-resource-operation" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/test/viper.go" />
+      <package value="github.com/haozi4263/admission-resource" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build viper.go" />
+        <item itemvalue="Go Build.go build github.com/haozi4263/admission-resource" />
+        <item itemvalue="Go Build.go build github.com/haozi4263/admission-resource/test" />
+        <item itemvalue="Go Build.go build tmpl.go" />
         <item itemvalue="Go Build.go build github.com/haozi4263/admission-resource-operation/test" />
-        <item itemvalue="Go Build.go build main.go" />
       </list>
     </recent_temporary>
   </component>

@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: admission-resource
-          image: haozi4263/admission-resource:v0.9
-          imagePullPolicy: IfNotPresent
+          image: haozi4263/admission-resource:v1.1
+          imagePullPolicy: Always
           env:
             # limit_cpu/request_cpu <= 4 limit_mem/request_mem <= 4
             - name: RESOURCE_MULTIPLE
@@ -27,10 +27,18 @@ spec:
             - name: webhook-certs
               mountPath: /etc/webhook/cert
               readOnly: true
+            - name: admission-resource
+              mountPath: /etc/webhook/conf
+              readOnly: true
       volumes:
         - name: webhook-certs
           secret:
             secretName: admission-resource-tls
+        - name: admission-resource
+          configMap:
+            defaultMode: 420
+            name: admission-resource
+
 ---
 apiVersion: v1
 kind: Service

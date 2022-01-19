@@ -24,3 +24,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
     对deployment/statfulset资源检测limit_cpu/request_cpu和limit_memory/limit_memory
     占比是否大于4倍数，大于4倍以上说明资源分配不合理，拒绝创建deployment/statfulset
     小于4倍则认为合理允许创建deployment/statfulset
+
+
+    增加去除init container
+    增加lables:
