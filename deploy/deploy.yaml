@@ -60,6 +60,7 @@ data:
     mutate:
       labels: true
       annotations: true
+      initContainers: ture
       namespace:
         - 'default'
     labels:
@@ -76,7 +77,6 @@ data:
       jude.io/register-plugin-extra.registry: {"appName":"shimo","isRDSAuth":1,"port":10114,"protocols":"","source":"cloud","tag":"","uptime":1576033750889,"weight":100,"zoneCode":"CHN-GZLY"}
 
     initContainers:
-      enable: false
       initContainers: |
         initContainers:
         - command:
