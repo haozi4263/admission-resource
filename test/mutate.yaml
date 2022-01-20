@@ -2,6 +2,14 @@ ClusterName: kubernetes
 Namespace: shimo
 
 
+mutate:
+  labels: true
+  annotations: false
+  initContainers: ture
+  namespace:
+    - 'default'
+    - 'shimo'
+
 labels:
   baymax.io/clustercode: "CHN-GZLY"
   baymax.io/groupname: "deployment"

@@ -59,10 +59,12 @@ data:
   mutate.yaml: |
     mutate:
       labels: true
-      annotations: true
+      annotations: false
       initContainers: ture
-      namespace:
+      namespaces:
         - 'default'
+
+
     labels:
       jude.io/clustercode: CHN-GZLY
       jude.io/groupname: "deploymentName"

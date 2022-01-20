@@ -20,8 +20,8 @@ var (
 	runtimeScheme = runtime.NewScheme()
 	codeFactory   = serializer.NewCodecFactory(runtimeScheme)
 	deserializer  = codeFactory.UniversalDeserializer()
-	deployment appsv1.Deployment
-	statefulset appsv1.StatefulSet
+	deployment    appsv1.Deployment
+	statefulset   appsv1.StatefulSet
 )
 
 type WhSvrParam struct {
@@ -199,9 +199,9 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 	req := ar.Request
 	var (
 		objectMeta *metav1.ObjectMeta
+		patch      []PatchOperation
 		limitCpu   string
 		limitMem   string
-		appName    string
 	)
 
 	klog.Infof("AdmissionReview for Kind=%s Namespace=%s Name=%s UID=%s",
@@ -222,7 +222,6 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 			limitCpu = dep.Resources.Limits.Cpu().String()
 			limitMem = dep.Resources.Limits.Memory().String()
 		}
-		appName = deployment.Name
 		objectMeta = &deployment.ObjectMeta
 	case "Statefulset":
 		if err := json.Unmarshal(req.Object.Raw, &statefulset); err != nil {
@@ -238,7 +237,6 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 			limitCpu = sts.Resources.Limits.Cpu().String()
 			limitMem = sts.Resources.Limits.Memory().String()
 		}
-		appName = statefulset.Name
 		objectMeta = &statefulset.ObjectMeta
 	default:
 		return &admissionv1.AdmissionResponse{
@@ -249,10 +247,17 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 		}
 	}
 
-	labels, annotations := GetLabels(appName, limitCpu, limitMem)
-	var patch []PatchOperation
-	patch = append(patch, mutateLabels(&deployment, objectMeta.GetLabels(), labels)...)
-	patch = append(patch, mutateAnnotations(&deployment, objectMeta.GetAnnotations(), annotations)...)
+	labels, annotations, required := GetLabels(ar, limitCpu, limitMem)
+	requiredNamespaces, _ := required["ns"].([]string)
+	klog.Infof("requiredNamespaces: %v req.namespace: %v", requiredNamespaces, req.Namespace)
+	requiredNs := ISValueInList(requiredNamespaces, req.Namespace)
+	if required["labels"].(bool) && requiredNs {
+		patch = append(patch, mutateLabels(&deployment, objectMeta.GetLabels(), labels)...)
+	}
+	if required["annotations"].(bool) && requiredNs {
+		patch = append(patch, mutateAnnotations(&deployment, objectMeta.GetAnnotations(), annotations)...)
+	}
+
 	patchBytes, err := json.Marshal(patch)
 	klog.Infof("patchBytes: %s", string(patchBytes))
 	if err != nil {
@@ -264,7 +269,7 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 			},
 		}
 	}
-  	// AdmissionResponse 返回给 APIServer
+	// AdmissionResponse 返回给 APIServer
 	return &admissionv1.AdmissionResponse{
 		Allowed: true,
 		Patch:   patchBytes,
@@ -283,14 +288,14 @@ func mutateLabels(dep *appsv1.Deployment, target map[string]string, added map[st
 		dep.Labels[key] = value
 	}
 	patch = append(patch, PatchOperation{
-		Op: "add",
-		Path: "/metadata/labels",
+		Op:    "add",
+		Path:  "/metadata/labels",
 		Value: dep.Labels,
 	})
 
 	patch = append(patch, PatchOperation{
-		Op: "add",
-		Path: "/spec/template/metadata/labels",
+		Op:    "add",
+		Path:  "/spec/template/metadata/labels",
 		Value: dep.Labels,
 	})
 	return patch
@@ -303,8 +308,8 @@ func mutateAnnotations(dep *appsv1.Deployment, target map[string]string, added m
 		}
 		dep.Annotations[key] = value
 		patch = append(patch, PatchOperation{
-			Op:   "add",
-			Path: "/metadata/annotations",
+			Op:    "add",
+			Path:  "/metadata/annotations",
 			Value: dep.Annotations,
 		})
 	}

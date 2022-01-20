@@ -37,38 +37,54 @@ func main()  {
 		panic(err)
 	}
 
+
 	config.Set("annotations.baymax.io/register-plugin-extra.cmdb.tags.groupName","api")
 	config.Set("labels.baymax.io/groupname", "api")
 
 	allAnnoKey:= config.AllKeys()
-	anno := map[string]string{}
+	annotations := map[string]string{}
 	labels := map[string]string{}
 	for _, key := range allAnnoKey{
 		if strings.HasPrefix(key, "annotations"){
-			anno[key] = config.GetString(key)
+			keys := strings.Replace(key, "annotations.","",-1)
+			if strings.HasSuffix(keys,".groupname"){
+				config.Set(keys,"api")
+			}
+			annotations[keys] = config.GetString(key)
 		}
 		if strings.HasPrefix(key, "labels"){
-			labels[key] = config.GetString(key)
+			if strings.HasSuffix(key,"groupname"){
+				config.Set(key,"xxxx")
+			}
+			keys := strings.Replace(key, "labels.","",-1)
+			labels[keys] = config.GetString(key)
 		}
 	}
 
 
-	//annotaions := map[string]string{}
-	for key, val := range anno{
-		//fmt.Println(key)
-		fmt.Printf("%s:%s\n",key, val)
-	//	split := strings.Split(key, ".")
-	//	if len(split) > 3 {
-	//		k := strings.Join(split[:len(split)-1], ".")
-	//		fmt.Println(k)
-	//		annotaions[key] = val
-	//	}
-	//fmt.Println(annotaions)
 
+	//fmt.Println(config.GetBool("mutate.labels"))
+	//fmt.Println(config.GetBool("mutate.annotations"))
+
+	ns := config.GetStringSlice("mutate.namespaces")
+	fmt.Println(ns)
+
+	require := []string{
+		"aaa",
+		"bbb",
+	}
+	if isValueInList(require, "aaa"){
+		println(11)
 	}
 
+}
 
 
-
-
+func isValueInList(slice []string, val string) (bool) {
+	for _, item := range slice {
+		if item == val {
+			return true
+		}
+	}
+	return false
 }

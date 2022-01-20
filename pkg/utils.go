@@ -27,3 +27,13 @@ func ResourceConvert(resource string) int {
 	cpu, _ := strconv.Atoi(resource) // 1c
 	return cpu * 1000
 }
+
+
+func ISValueInList(slice []string, val string) (bool) {
+	for _, item := range slice {
+		if item == val {
+			return true
+		}
+	}
+	return false
+}
