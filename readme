@@ -11,7 +11,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
 4. 将ca.pem放入admission-webhook的caBundle中
     cat ca.pem|base64
 5.编译镜像
-    docker build -t haozi4263/admission-resource:v0.9 . && docker push haozi4263/admission-resource:v0.9                                      [15:58:36]
+    docker build -t haozi4263/admission-resource:v1.1 . && docker push haozi4263/admission-resource:v1.1
 6. 运行admission-webhook
    kubectl apply -f deploy/admission-webhook-controller.yaml
 7. 注册admission-webhook

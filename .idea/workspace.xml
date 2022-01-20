@@ -36,6 +36,7 @@
       <change afterPath="$PROJECT_DIR$/../admission-registry/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../admission-registry/pkg/webhook.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../admission-registry/readme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy/admission-resource-test.yaml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/cmd/backup/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/action.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/resource.go" afterDir="false" />
@@ -81,8 +82,11 @@
       <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/方法/02_方法引用传递.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../github.com/k8s/demo1/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/test/admission-resource-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/test/admission-resource-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/deploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/admission-webhook-controller.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/registry.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/registry-webhook.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/test/admission-resource-test.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/webhook.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme" beforeDir="false" afterPath="$PROJECT_DIR$/readme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/json/json.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/json/01_结构体转json.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/employee/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/employee/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/employee/mainbak.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/employee/mainbak.go" afterDir="false" />
@@ -144,7 +148,7 @@
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/deploy/deploy.yaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/deploy/admission-webhook-controller.yaml" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="kubernetes-admin@cluster.local" />
@@ -172,6 +176,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/deploy" />
       <recent name="$PROJECT_DIR$/test" />
     </key>
   </component>
