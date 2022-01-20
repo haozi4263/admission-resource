@@ -6,30 +6,32 @@ import (
 	"strings"
 )
 
-type cmdb struct {
-	appName string `json:"appName"`
-	clusterName string `json:"clusterName"`
-	cpu string `json:"cpu"`
-	disk_model_name string `json:"disk_model_name"`
-	disk_size string `json:"disk_size"`
-	env string `json:"env"`
-	mem string `json:"mem"`
-	serverType string `json:"serverType"`
-	GroupName `json:"groupName"`
-	treeAppId int `json:"treeAppId"`
-	userID string `json:"userID"`
-	userName string `json:"userName"`
-	zone string `json:"zone"`
-}
-type GroupName struct {
-	GroupName string
+type initContainers struct {
+	initContainers  Containers
 }
 
+type Containers struct {
+	Command []string
+	EnvFrom configMapRef
+	Image string
+	ImagePullPolicy string
+	Name string
+}
+type configMapRef struct {
+	Name string
+}
+
+func isValueInList(slice []string, val string) (bool) {
+	for _, item := range slice {
+		if item == val {
+			return true
+		}
+	}
+	return false
+}
 
 func main()  {
 	config := viper.New()
-
-
 	config.AddConfigPath("/Users/zhanghao/code/golang/src/crd/admission-resource/test/")
 	config.SetConfigName("mutate")
 	config.SetConfigType("yaml")
@@ -37,6 +39,11 @@ func main()  {
 		panic(err)
 	}
 
+	var init initContainers
+	//initContainers := config.Get("initContainers")
+	err := config.Unmarshal(&init)
+	fmt.Println(1, err)
+	fmt.Println(init.initContainers)
 
 	config.Set("annotations.baymax.io/register-plugin-extra.cmdb.tags.groupName","api")
 	config.Set("labels.baymax.io/groupname", "api")
@@ -66,8 +73,6 @@ func main()  {
 	//fmt.Println(config.GetBool("mutate.labels"))
 	//fmt.Println(config.GetBool("mutate.annotations"))
 
-	ns := config.GetStringSlice("mutate.namespaces")
-	fmt.Println(ns)
 
 	require := []string{
 		"aaa",
@@ -77,14 +82,11 @@ func main()  {
 		println(11)
 	}
 
+
+
+
+
+
 }
 
 
-func isValueInList(slice []string, val string) (bool) {
-	for _, item := range slice {
-		if item == val {
-			return true
-		}
-	}
-	return false
-}

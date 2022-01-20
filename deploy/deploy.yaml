@@ -60,38 +60,36 @@ data:
     mutate:
       labels: true
       annotations: false
-      initContainers: ture
+      initContainers: true
       namespaces:
         - 'default'
 
 
     labels:
-      jude.io/clustercode: CHN-GZLY
-      jude.io/groupname: "deploymentName"
-      jude.io/zonecode: CHN-GZLY
-      jude.io/appid: shimo
+      kubernetes.io/clustercode: CHN-GZLY
+      kubernetes.io/groupname: "deploymentName"
+      kubernetes.io/zonecode: CHN-GZLY
+      kubernetes.io/appid: shimo
 
     annotations:
-      jude.io/register-pod.temporaryDeletion: false
-      jude.io/register-plugin.cmdb: true
-      jude.io/register-plugin.registry: true
-      jude.io/register-plugin-extra.cmdb: {"appName":"shimo","clusterName":"shimo","cpu":"limit.cpu","disk_model_name":"sata","disk_size":"50Gi","env":"product","mem":"limit.mem","serverType":"default","tags":{"groupName":"deploymentName"},"treeAppId":55086,"userID":"80295976","userName":"zhangfuyuan","zone":"CHN-GZLY"}
-      jude.io/register-plugin-extra.registry: {"appName":"shimo","isRDSAuth":1,"port":10114,"protocols":"","source":"cloud","tag":"","uptime":1576033750889,"weight":100,"zoneCode":"CHN-GZLY"}
+      kubernetes.io/register-pod.temporaryDeletion: false
+      kubernetes.io/register-plugin.cmdb: true
+      kubernetes.io/register-plugin.registry: true
+      kubernetes.io/register-plugin-extra.cmdb: {"appName":"shimo","clusterName":"shimo","cpu":"limit.cpu","disk_model_name":"sata","disk_size":"50Gi","env":"product","mem":"limit.mem","serverType":"default","tags":{"groupName":"deploymentName"},"treeAppId":55086,"userID":"80295976","userName":"zhangfuyuan","zone":"CHN-GZLY"}
+      kubernetes.io/register-plugin-extra.registry: {"appName":"shimo","isRDSAuth":1,"port":10114,"protocols":"","source":"cloud","tag":"","uptime":1576033750889,"weight":100,"zoneCode":"CHN-GZLY"}
 
-    initContainers:
-      initContainers: |
-        initContainers:
-        - command:
-          - python
-          - -u
-          - /app/main.py
-          - ALL
-          envFrom:
-          - configMapRef:
-              name: global-configuration
-          image: registryo.shimo.im/shimo-ee/init_container
-          imagePullPolicy: Always
-        name: healthcheck-service
+    InitContainers:
+      Command:
+        - python
+        - -u
+        - /app/main.py
+        - ALl
+      EnvFrom:
+        ConfigMapRef:
+          Name: global-configuration
+      Image: registryo.shimo.im/shimo-ee/init_container
+      ImagePullPolicy: Always
+      Name: healthcheck-service
 
 kind: ConfigMap
 metadata:

@@ -10,6 +10,20 @@ mutate:
     - 'default'
     - 'shimo'
 
+
+initContainers:
+  Command:
+    - python
+    - -u
+    - /app/main.py
+    - ALl
+  EnvFrom:
+    ConfigMapRef:
+      Name: global-configuration
+  Image: registryo.shimo.im/shimo-ee/init_container
+  ImagePullPolicy: Always
+  Name: healthcheck-service
+
 labels:
   baymax.io/clustercode: "CHN-GZLY"
   baymax.io/groupname: "deployment"

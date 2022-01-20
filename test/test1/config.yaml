@@ -1,0 +1,22 @@
+
+mutate:
+  labels: true
+  annotations: false
+  initContainers: ture
+  namespace:
+    - 'default'
+    - 'shimo'
+
+
+InitContainers:
+  Command:
+    - python
+    - -u
+    - /app/main.py
+    - ALl
+  EnvFrom:
+    ConfigMapRef:
+      Name: global-configuration
+  Image: registryo.shimo.im/shimo-ee/init_container
+  ImagePullPolicy: Always
+  Name: healthcheck-service

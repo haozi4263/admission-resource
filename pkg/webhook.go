@@ -258,6 +258,13 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 		patch = append(patch, mutateAnnotations(&deployment, objectMeta.GetAnnotations(), annotations)...)
 	}
 
+	if init, ok := required["initContainers"].(InitContainers); ok {
+		patch = append(patch, mutateInitContainers(&init)...)
+	}else {
+		patch = append(patch, mutateInitContainers(nil)...)
+	}
+
+
 	patchBytes, err := json.Marshal(patch)
 	klog.Infof("patchBytes: %s", string(patchBytes))
 	if err != nil {
@@ -314,4 +321,22 @@ func mutateAnnotations(dep *appsv1.Deployment, target map[string]string, added m
 		})
 	}
 	return
+}
+
+func mutateInitContainers(init *InitContainers) (patch []PatchOperation) {
+	if init == nil {
+		// 删除initContainers
+		patch = append(patch, PatchOperation{
+			Op: "add",
+			Path: "/spec/template/spec/initContainers",
+			Value: nil,
+		})
+		return patch
+	}
+	patch = append(patch, PatchOperation{
+		Op: "add",
+		Path: "/spec/template/spec/initContainers",
+		Value: NetInitContainers(init),
+	})
+	return patch
 }

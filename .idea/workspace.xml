@@ -36,6 +36,8 @@
       <change afterPath="$PROJECT_DIR$/../admission-registry/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../admission-registry/pkg/webhook.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../admission-registry/readme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test1/config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test1/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/cmd/backup/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/action.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/resource.go" afterDir="false" />
@@ -82,8 +84,8 @@
       <change afterPath="$PROJECT_DIR$/../../github.com/k8s/demo1/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/deploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/test/admission-resource-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/test/admission-resource-test.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/resouce.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/resouce.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/utils.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/webhook.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/mutate.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/test/mutate.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/viper.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/viper.go" afterDir="false" />
@@ -179,16 +181,7 @@
       <recent name="$PROJECT_DIR$/test" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build viper.go">
-    <configuration name="go build github.com/haozi4263/admission-resource-operation/test" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="admission-resource-operation" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/test/main.go" />
-      <package value="github.com/haozi4263/admission-resource-operation/test" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Build.go build main.go">
     <configuration name="go build github.com/haozi4263/admission-resource" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="admission-resource-operation" />
       <working_directory value="$PROJECT_DIR$" />
@@ -207,11 +200,20 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build tmpl.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build github.com/haozi4263/admission-resource/test/test1" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="admission-resource-operation" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/test/test1/main.go" />
+      <package value="github.com/haozi4263/admission-resource/test/test1" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="admission-resource-operation" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/test/tmpl.go" />
+      <filePath value="$PROJECT_DIR$/test/test1/main.go" />
       <package value="github.com/haozi4263/admission-resource" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
@@ -227,11 +229,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build viper.go" />
+        <item itemvalue="Go Build.go build github.com/haozi4263/admission-resource/test/test1" />
         <item itemvalue="Go Build.go build github.com/haozi4263/admission-resource" />
         <item itemvalue="Go Build.go build github.com/haozi4263/admission-resource/test" />
-        <item itemvalue="Go Build.go build tmpl.go" />
-        <item itemvalue="Go Build.go build github.com/haozi4263/admission-resource-operation/test" />
       </list>
     </recent_temporary>
   </component>
@@ -253,5 +255,16 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$USER_HOME$/go/pkg/mod/k8s.io/api@v0.20.2/core/v1/types.go</url>
+          <line>50</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

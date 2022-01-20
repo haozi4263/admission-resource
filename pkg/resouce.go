@@ -3,8 +3,51 @@ package pkg
 import (
 	"github.com/spf13/viper"
 	admissionv1 "k8s.io/api/admission/v1"
+	corev1 "k8s.io/api/core/v1"
+	"k8s.io/klog"
 	"strings"
 )
+
+type InitContainers struct {
+	InitContainers  Containers
+}
+type Containers struct {
+	Command []string
+	Image string
+	ImagePullPolicy string
+	Name string
+	EnvFrom Configmap
+}
+type Configmap struct {
+	ConfigMapRef
+}
+type ConfigMapRef struct {
+	Name string
+}
+
+
+
+func NetInitContainers(init *InitContainers) []corev1.Container  {
+	if init == nil {
+		return nil
+	}
+	return []corev1.Container{
+		corev1.Container{
+			Name: init.InitContainers.Name,
+			Image: init.InitContainers.Image,
+			Command: init.InitContainers.Command,
+			EnvFrom: []corev1.EnvFromSource{
+				corev1.EnvFromSource{
+					ConfigMapRef: &corev1.ConfigMapEnvSource{
+						LocalObjectReference: corev1.LocalObjectReference{
+							Name: init.InitContainers.EnvFrom.Name,
+						},
+					},
+					},
+				},
+			},
+	}
+}
 
 func GetLabels(ar *admissionv1.AdmissionReview, limitCpu, limitMem string) (labels map[string]string, annotations map[string]string, required map[string]interface{}) {
 	req := ar.Request
@@ -20,7 +63,19 @@ func GetLabels(ar *admissionv1.AdmissionReview, limitCpu, limitMem string) (labe
 		"labels": false,
 		"annotations": false,
 		"ns":[]string{},
+		"initContainers": false,
 	}
+
+
+	if config.GetBool("mutate.initContainers") {
+		var init InitContainers
+		if err := config.Unmarshal(&init); err != nil{
+			klog.Infof("Unmarshal initContainers failed error: %v", err)
+		}else {
+			required["initContainers"] = init
+		}
+	}
+
 
 	required["ns"] = config.GetStringSlice("mutate.namespaces")
 	if config.GetBool("mutate.labels") {
