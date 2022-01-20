@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: admission-resource-test
+  name: admission-resource-test
+  namespace: shimo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admission-resource-test
+  template:
+    metadata:
+      labels:
+        app: admission-resource-test
+    spec:
+      containers:
+      - image: docker.io/nginx
+        imagePullPolicy: Always
+        name: mutate
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: "1"
+            memory: 512Mi
+
+

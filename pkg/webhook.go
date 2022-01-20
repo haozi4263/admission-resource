@@ -22,6 +22,8 @@ var (
 	deserializer  = codeFactory.UniversalDeserializer()
 	deployment    appsv1.Deployment
 	statefulset   appsv1.StatefulSet
+
+	requiredNs bool
 )
 
 type WhSvrParam struct {
@@ -120,7 +122,7 @@ func (s *WebhookServer) validate(ar *admissionv1.AdmissionReview) *admissionv1.A
 		resource *corev1.ResourceRequirements
 	)
 
-	klog.Infof("AdmissionReview for Kind=%s, Namespace=%s Name=%s UID=%s",
+	klog.Infof("Validate AdmissionReview for Kind=%s, Namespace=%s Name=%s UID=%s",
 		req.Kind.Kind, req.Namespace, req.Name, req.UID)
 
 	switch req.Kind.Kind {
@@ -164,7 +166,6 @@ func (s *WebhookServer) validate(ar *admissionv1.AdmissionReview) *admissionv1.A
 			},
 		}
 	}
-
 	requestCpu := ResourceConvert(resource.Requests.Cpu().String())
 	requestMem := ResourceConvert(resource.Requests.Memory().String())
 	limitCpu := ResourceConvert(resource.Limits.Cpu().String())
@@ -172,24 +173,32 @@ func (s *WebhookServer) validate(ar *admissionv1.AdmissionReview) *admissionv1.A
 
 	cpuMultiple, _ := strconv.Atoi(s.RESOURCE_MULTIPLE[0])
 	MemMultiple, _ := strconv.Atoi(s.RESOURCE_MULTIPLE[1])
-
-	if limitCpu/requestCpu > cpuMultiple || limitMem/requestMem > MemMultiple {
-		klog.Info("limit/request资源比例大于4倍不符合资源限制要求!")
+	// 判断namespace是否需要执行validate
+	if requiredNs {
+		if limitCpu/requestCpu > cpuMultiple || limitMem/requestMem > MemMultiple {
+			klog.Info("limit/request资源比例大于4倍不符合资源限制要求!")
+			return &admissionv1.AdmissionResponse{
+				Allowed: false,
+				Result: &metav1.Status{
+					Code: http.StatusBadRequest,
+					Message: fmt.Sprintf("limit_cpu/request_cpu: %v or limit_mem/limit_cpu: %v above 4倍",
+						limitCpu/requestCpu, limitMem/requestMem),
+				},
+			}
+		}
 		return &admissionv1.AdmissionResponse{
-			Allowed: false,
+			Allowed: true,
 			Result: &metav1.Status{
-				Code: http.StatusBadRequest,
-				Message: fmt.Sprintf("limit_cpu/request_cpu: %v or limit_mem/limit_cpu: %v above 4倍",
-					limitCpu/requestCpu, limitMem/requestMem),
+				Code:    http.StatusOK,
+				Message: fmt.Sprintf("resoucres limit/request结果小于等于4符合资源限制要求"),
 			},
 		}
 	}
-
 	return &admissionv1.AdmissionResponse{
 		Allowed: true,
 		Result: &metav1.Status{
 			Code:    http.StatusOK,
-			Message: fmt.Sprintf("resoucres limit/request结果小于等于4符合资源限制要求"),
+			Message: fmt.Sprintf("namespace: %s is not validate skip..", req.Namespace),
 		},
 	}
 }
@@ -204,7 +213,7 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 		limitMem   string
 	)
 
-	klog.Infof("AdmissionReview for Kind=%s Namespace=%s Name=%s UID=%s",
+	klog.Infof(" Mutate AdmissionReview for Kind=%s Namespace=%s Name=%s UID=%s",
 		req.Kind.Kind, req.Namespace, req.Name, req.UID)
 
 	switch req.Kind.Kind {
@@ -249,8 +258,7 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 
 	labels, annotations, required := GetLabels(ar, limitCpu, limitMem)
 	requiredNamespaces, _ := required["ns"].([]string)
-	klog.Infof("requiredNamespaces: %v req.namespace: %v", requiredNamespaces, req.Namespace)
-	requiredNs := ISValueInList(requiredNamespaces, req.Namespace)
+	requiredNs = ISValueInList(requiredNamespaces, req.Namespace)
 	if required["labels"].(bool) && requiredNs {
 		patch = append(patch, mutateLabels(&deployment, objectMeta.GetLabels(), labels)...)
 	}
@@ -258,12 +266,12 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 		patch = append(patch, mutateAnnotations(&deployment, objectMeta.GetAnnotations(), annotations)...)
 	}
 
-	if init, ok := required["initContainers"].(InitContainers); ok {
+	// 判断是否需要执行mutate initContainers
+	if init, ok := required["initContainers"].(InitContainers); ok && requiredNs {
 		patch = append(patch, mutateInitContainers(&init)...)
-	}else {
+	} else {
 		patch = append(patch, mutateInitContainers(nil)...)
 	}
-
 
 	patchBytes, err := json.Marshal(patch)
 	klog.Infof("patchBytes: %s", string(patchBytes))
@@ -327,15 +335,15 @@ func mutateInitContainers(init *InitContainers) (patch []PatchOperation) {
 	if init == nil {
 		// 删除initContainers
 		patch = append(patch, PatchOperation{
-			Op: "add",
-			Path: "/spec/template/spec/initContainers",
+			Op:    "add",
+			Path:  "/spec/template/spec/initContainers",
 			Value: nil,
 		})
 		return patch
 	}
 	patch = append(patch, PatchOperation{
-		Op: "add",
-		Path: "/spec/template/spec/initContainers",
+		Op:    "add",
+		Path:  "/spec/template/spec/initContainers",
 		Value: NetInitContainers(init),
 	})
 	return patch
