@@ -24,6 +24,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
 
 ## 8. 对namespace打标签用于允许admission webhook
    kubectl label namespace default admission-resource=enabled
+   deployment需要打上标签admission-resource: enabled
 
 ## 9. 运行deployment测试,观察日志
    kubectl apply -f deploy/admission-resource-test.yaml

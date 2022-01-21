@@ -7,6 +7,9 @@ webhooks:
     namespaceSelector:
       matchLabels:
         admission-resource: enabled
+    objectSelector:
+      matchLabels:
+        admission-resource: enabled
     rules:
       - apiGroups:   ["apps"]
         apiVersions: ["v1"]
@@ -30,6 +33,9 @@ metadata:
 webhooks:
   - name: im.shimo.admission-resource-mutate
     namespaceSelector:
+      matchLabels:
+        admission-resource: enabled
+    objectSelector:
       matchLabels:
         admission-resource: enabled
     clientConfig:

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: admission-resource-test
+    admission-resource: enabled
   name: admission-resource-test
 spec:
   replicas: 1

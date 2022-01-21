@@ -82,11 +82,7 @@
       <change afterPath="$PROJECT_DIR$/../../github.com/k8s/demo1/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/admission-resource-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/admission-resource-test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/admission-webhook-controller.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/admission-webhook-controller.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/registry-webhook.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/registry-webhook.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/resouce.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/resouce.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/webhook.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme" beforeDir="false" afterPath="$PROJECT_DIR$/readme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/json/json.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/json/01_结构体转json.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/listen16/employee/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/listen16-interface/employee/main.go" afterDir="false" />
