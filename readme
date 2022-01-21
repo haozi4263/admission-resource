@@ -1,26 +1,36 @@
-1. 创建ca证书
+## 1. 创建ca证书
     cfssl gencert -initca ca-csr.json | cfssljson -bare ca
-2. 创建服务端证书,hostname要指定admission-webhook的svc名称
+
+## 2. 创建服务端证书,hostname要指定admission-webhook的svc名称
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
 		-hostname=admission-resource.default.svc -profile=server server-csr.json | cfssljson -bare server
 
-3. 创建tls的secret
+## 3. 创建tls的secret
     kubectl create secret tls admission-resource-tls \
             --key=server-key.pem \
             --cert=server.pem
-4. 将ca.pem放入admission-webhook的caBundle中
+
+## 4. 将ca.pem放入admission-webhook的caBundle中
     cat ca.pem|base64
-5.编译镜像
+
+## 5.编译镜像
     docker build -t haozi4263/admission-resource:v1.1 . && docker push haozi4263/admission-resource:v1.1
-6. 运行admission-webhook
+
+## 6. 运行admission-webhook
    kubectl apply -f deploy/admission-webhook-controller.yaml
-7. 注册admission-webhook
+
+## 7. 注册admission-webhook
    kubectl apply -f deploy/registry-webhook.yaml
-8. 运行deployment测试,观察日志
+
+## 8. 对namespace打标签用于允许admission webhook
+   kubectl label namespace default admission-resource=enabled
+
+## 9. 运行deployment测试,观察日志
    kubectl apply -f deploy/admission-resource-test.yaml
-   a. 观察cpu/memory资源创建是否符合资源规定
-   b. 观察是否增加labels/annotations/initContainers
-项目说明：
+       a. 观察cpu/memory资源创建是否符合资源规定
+       b. 观察是否增加labels/annotations/initContainers
+
+# 项目说明：
     validate admission webook:
         对deployment/statfulset资源检测limit_cpu/request_cpu和limit_memory/limit_memory
         占比是否大于4倍数，大于4倍以上说明资源分配不合理，拒绝创建deployment/statfulset
@@ -30,14 +40,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
         对deployment/statfulset资源通过给定对configmap增加labels和annotations注解。
         对deployment/statfulset资源通过给定对configmap增加initContainers。
 
-validate和mutate控制器基本功能完成v1.0
 
-validate和mutate控制器基本功能：
-    validate：
-       根据configmap中开关对cpu/memory资源做准入控制。
-    mutate:
-       根据configmap中开关对labels/annotations/initContations资源做校验控制。
-
-参考文档：
+## 参考文档：
     https://kubernetes.io/zh/docs/reference/access-authn-authz/extensible-admission-controllers/
     https://jsonpatch.com/

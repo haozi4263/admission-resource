@@ -22,9 +22,7 @@ var (
 	deserializer  = codeFactory.UniversalDeserializer()
 	deployment    appsv1.Deployment
 	statefulset   appsv1.StatefulSet
-
-	requiredNs bool
-)
+	)
 
 type WhSvrParam struct {
 	Port       int
@@ -173,24 +171,15 @@ func (s *WebhookServer) validate(ar *admissionv1.AdmissionReview) *admissionv1.A
 
 	cpuMultiple, _ := strconv.Atoi(s.RESOURCE_MULTIPLE[0])
 	MemMultiple, _ := strconv.Atoi(s.RESOURCE_MULTIPLE[1])
-	// 判断namespace是否需要执行validate
-	if requiredNs {
-		if limitCpu/requestCpu > cpuMultiple || limitMem/requestMem > MemMultiple {
-			klog.Info("limit/request资源比例大于4倍不符合资源限制要求!")
-			return &admissionv1.AdmissionResponse{
-				Allowed: false,
-				Result: &metav1.Status{
-					Code: http.StatusBadRequest,
-					Message: fmt.Sprintf("limit_cpu/request_cpu: %v or limit_mem/limit_cpu: %v above 4倍",
-						limitCpu/requestCpu, limitMem/requestMem),
-				},
-			}
-		}
+
+	if limitCpu/requestCpu > cpuMultiple || limitMem/requestMem > MemMultiple {
+		klog.Info("limit/request资源比例大于4倍不符合资源限制要求!")
 		return &admissionv1.AdmissionResponse{
-			Allowed: true,
+			Allowed: false,
 			Result: &metav1.Status{
-				Code:    http.StatusOK,
-				Message: fmt.Sprintf("resoucres limit/request结果小于等于4符合资源限制要求"),
+				Code: http.StatusBadRequest,
+				Message: fmt.Sprintf("limit_cpu/request_cpu: %v or limit_mem/limit_cpu: %v above 4倍",
+					limitCpu/requestCpu, limitMem/requestMem),
 			},
 		}
 	}
@@ -198,9 +187,10 @@ func (s *WebhookServer) validate(ar *admissionv1.AdmissionReview) *admissionv1.A
 		Allowed: true,
 		Result: &metav1.Status{
 			Code:    http.StatusOK,
-			Message: fmt.Sprintf("namespace: %s is not validate skip..", req.Namespace),
+			Message: fmt.Sprintf("resoucres limit/request结果小于等于4符合资源限制要求"),
 		},
 	}
+
 }
 
 func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.AdmissionResponse {
@@ -257,17 +247,15 @@ func (s *WebhookServer) mutate(ar *admissionv1.AdmissionReview) *admissionv1.Adm
 	}
 
 	labels, annotations, required := GetLabels(ar, limitCpu, limitMem)
-	requiredNamespaces, _ := required["ns"].([]string)
-	requiredNs = ISValueInList(requiredNamespaces, req.Namespace)
-	if required["labels"].(bool) && requiredNs {
+	if required["labels"].(bool) {
 		patch = append(patch, mutateLabels(&deployment, objectMeta.GetLabels(), labels)...)
 	}
-	if required["annotations"].(bool) && requiredNs {
+	if required["annotations"].(bool) {
 		patch = append(patch, mutateAnnotations(&deployment, objectMeta.GetAnnotations(), annotations)...)
 	}
 
 	// 判断是否需要执行mutate initContainers
-	if init, ok := required["initContainers"].(InitContainers); ok && requiredNs {
+	if init, ok := required["initContainers"].(InitContainers); ok {
 		patch = append(patch, mutateInitContainers(&init)...)
 	} else {
 		patch = append(patch, mutateInitContainers(nil)...)

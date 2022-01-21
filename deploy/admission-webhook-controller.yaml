@@ -61,9 +61,6 @@ data:
       labels: true
       annotations: false
       initContainers: true
-      namespaces:
-        - 'default'
-
 
     labels:
       kubernetes.io/clustercode: CHN-GZLY

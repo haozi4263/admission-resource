@@ -62,7 +62,6 @@ func GetLabels(ar *admissionv1.AdmissionReview, limitCpu, limitMem string) (labe
 	required = map[string]interface{}{
 		"labels": false,
 		"annotations": false,
-		"ns":[]string{},
 		"initContainers": false,
 	}
 
@@ -77,7 +76,6 @@ func GetLabels(ar *admissionv1.AdmissionReview, limitCpu, limitMem string) (labe
 	}
 
 
-	required["ns"] = config.GetStringSlice("mutate.namespaces")
 	if config.GetBool("mutate.labels") {
 		required["labels"] = true
 	}
