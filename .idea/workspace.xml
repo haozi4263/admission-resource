@@ -36,7 +36,6 @@
       <change afterPath="$PROJECT_DIR$/../admission-registry/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../admission-registry/pkg/webhook.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../admission-registry/readme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deploy/admission-resource-test.yaml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/cmd/backup/main.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/action.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../etcd-operator/controllers/resource.go" afterDir="false" />
@@ -82,9 +81,7 @@
       <change afterPath="$PROJECT_DIR$/../../github.com/gostudy/方法/02_方法引用传递.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../github.com/k8s/demo1/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/admission-webhook-controller.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/registry.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/registry-webhook.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/test/admission-resource-test.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/admission-resource-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/admission-resource-test.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/webhook.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme" beforeDir="false" afterPath="$PROJECT_DIR$/readme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../github.com/gostudy/json/json.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../github.com/gostudy/json/01_结构体转json.go" afterDir="false" />
@@ -152,7 +149,7 @@
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="kubernetes-admin@cluster.local" />
-    <option name="namespace" value="default" />
+    <option name="namespace" value="shimo" />
   </component>
   <component name="ProjectId" id="23YOTWXG9uqrShO8LpMVgsqp75m" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -167,7 +164,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/deploy/test" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">

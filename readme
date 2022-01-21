@@ -29,3 +29,15 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
     mutate admission webhook:
         对deployment/statfulset资源通过给定对configmap增加labels和annotations注解。
         对deployment/statfulset资源通过给定对configmap增加initContainers。
+
+validate和mutate控制器基本功能完成v1.0
+
+validate和mutate控制器基本功能：
+    validate：
+       根据configmap中开关对cpu/memory资源做准入控制。
+    mutate:
+       根据configmap中开关对labels/annotations/initContations资源做校验控制。
+
+参考文档：
+    https://kubernetes.io/zh/docs/reference/access-authn-authz/extensible-admission-controllers/
+    https://jsonpatch.com/

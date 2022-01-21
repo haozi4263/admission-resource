@@ -4,7 +4,7 @@ metadata:
   labels:
     app: admission-resource-test
   name: admission-resource-test
-  namespace: shimo
+  namespace: default
 spec:
   replicas: 1
   selector:
